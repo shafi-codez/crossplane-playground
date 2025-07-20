@@ -1,0 +1,15 @@
+apiVersion: dynamodb.aws.crossplane.io/v1beta1
+kind: Table
+metadata:
+  name: my-dynamodb-table
+spec:
+  forProvider:
+    region: us-east-1 # Or your desired AWS region
+    attributeDefinitions:
+      - attributeName: id
+        attributeType: S
+    keySchema:
+      - attributeName: id
+        keyType: HASH
+    billingMode: PAY_PER_REQUEST
+  # ... other DynamoDB table configurations
