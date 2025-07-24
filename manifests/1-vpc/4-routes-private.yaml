@@ -10,44 +10,23 @@ spec:
       Name: dev-private
     vpcIdRef:
       name: dev-main
+  providerConfigRef:
+    name: aws-provider
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.crossplane.io/v1alpha1
 kind: Route
 metadata:
-  name: dev-private
+  name: dev-private-route
 spec:
   forProvider:
-    destinationCidrBlock: 0.0.0.0/0
+    region: us-west-2
+    destinationCIDRBlock: 0.0.0.0/0
     natGatewayIdRef:
       name: dev-nat
-    region: us-west-2
     routeTableIdRef:
       name: dev-private
----
-apiVersion: ec2.aws.upbound.io/v1beta1
-kind: RouteTable
-metadata:
-  name: dev-public
-spec:
-  forProvider:
-    region: us-west-2
-    tags:
-      Name: dev-public
-    vpcIdRef:
-      name: dev-main
----
-apiVersion: ec2.aws.upbound.io/v1beta1
-kind: Route
-metadata:
-  name: dev-public
-spec:
-  forProvider:
-    destinationCidrBlock: 0.0.0.0/0
-    gatewayIdRef:
-      name: dev-igw
-    region: us-west-2
-    routeTableIdRef:
-      name: dev-public
+  providerConfigRef:
+    name: aws-provider
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -76,23 +55,12 @@ spec:
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
-  name: dev-public-us-west-2a
+  name: dev-private-us-west-2c
 spec:
   forProvider:
     region: us-west-2
     routeTableIdRef:
-      name: dev-public
+      name: dev-private
     subnetIdRef:
-      name: dev-public-us-west-2a
+      name: dev-private-us-west-2c
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
-kind: RouteTableAssociation
-metadata:
-  name: dev-public-us-west-2b
-spec:
-  forProvider:
-    region: us-west-2
-    routeTableIdRef:
-      name: dev-public
-    subnetIdRef:
-      name: dev-public-us-west-2b
