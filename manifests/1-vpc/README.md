@@ -32,3 +32,6 @@ private / public routes creation
 
 Using Cursor
 <img width="694" height="703" alt="image" src="https://github.com/user-attachments/assets/c5eb05da-a93f-43ce-a99d-32bd97e74cf6" />
+
+AWS Console with subnet creation
+<img width="1463" height="123" alt="image" src="https://github.com/user-attachments/assets/b7e4c4d9-0844-42d4-82f8-1c20fbd53cff" />
