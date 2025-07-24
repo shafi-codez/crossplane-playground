@@ -1,0 +1,4 @@
+*.pyc
+*.bck
+tutorials
+*/aws-credentials.txt
