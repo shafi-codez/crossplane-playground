@@ -10,8 +10,6 @@ spec:
       Name: dev-private
     vpcIdRef:
       name: dev-main
-  providerConfigRef:
-    name: aws-provider
 ---
 apiVersion: ec2.aws.crossplane.io/v1alpha1
 kind: Route
@@ -25,8 +23,6 @@ spec:
       name: dev-nat
     routeTableIdRef:
       name: dev-private
-  providerConfigRef:
-    name: aws-provider
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -51,16 +47,3 @@ spec:
       name: dev-private
     subnetIdRef:
       name: dev-private-us-west-2b
----
-apiVersion: ec2.aws.upbound.io/v1beta1
-kind: RouteTableAssociation
-metadata:
-  name: dev-private-us-west-2c
-spec:
-  forProvider:
-    region: us-west-2
-    routeTableIdRef:
-      name: dev-private
-    subnetIdRef:
-      name: dev-private-us-west-2c
----
